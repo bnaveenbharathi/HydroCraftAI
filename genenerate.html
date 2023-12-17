@@ -50,7 +50,13 @@
             align-items: center;
             justify-content: center;
         } */
-
+		#buttonContainerNew button {
+            background-color: transparent;
+            color: #000; /* Set the text color to black or any color you prefer */
+            border: 1px solid #000; /* Add a border for visibility */
+            padding: 5px 10px; /* Add padding for better appearance */
+            cursor: pointer; /* Add cursor style on hover */
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -129,6 +135,9 @@
 		.generator{
 			margin-top: 30px;
 			margin-bottom: 50px;
+		}
+		.Turbinenextpage{
+			background: transparent !important;
 		}
     </style>
 
@@ -382,8 +391,8 @@
                     <option value="francis">Francis</option>
                     <option value="kaplan">Kaplan</option>
                 </select>
-            <input type="button" value="View" class="turbineview"></div>
-             <h3 class="h11 font-weight-bold">Turbine Efficiency Preferences:</h3>
+				<div id="buttonContainerNew" class="turbinetypebtn"></div>       
+				      <h3 class="h11 font-weight-bold">Turbine Efficiency Preferences:</h3>
                
             
                 <p><b>Note : </b>operating conditions give only on percentage</p>
@@ -669,9 +678,57 @@
 <!-- End of Footer section
 	============================================= -->	
    <script>
-	document.querySelector('.turbinevieew').addEventListener('click',()=>{
-                   document.querySelector
-	})
+	 var turbineTypeSelect = document.getElementById('turbineType');
+        var buttonContainer = document.getElementById('buttonContainerNew');
+
+        // Create a function to handle button click and open the link in a new tab with a delay
+        function goToNextPage(type) {
+            // Define the page links for each turbine type
+            var pageLinks = {
+                pelton: 'pelton_page.html',
+                francis: 'http://127.0.0.1:5501/Generative.html?scene=francis-turbine',
+                kaplan: 'http://127.0.0.1:5501/Generative.html?scene=kaplan-turbine'
+            };
+
+            // Get the corresponding page link
+            var pageLink = pageLinks[type];
+
+            // Check if the page link is defined
+            if (pageLink) {
+                // Add a delay of 1 second before opening the new tab
+                setTimeout(function () {
+                    window.open(pageLink, '_blank');
+                }, 1000);
+            } else {
+                // Provide a default behavior or show an error message
+                console.error('Page link not defined for the selected turbine type.');
+            }
+        }
+
+        // Add an event listener to the select element
+        turbineTypeSelect.addEventListener('change', function() {
+            // Get the selected value
+            var selectedValue = turbineTypeSelect.value;
+
+            // Check if the selected value is not empty
+            if (selectedValue !== '') {
+                // Create a new button
+                var newButton = document.createElement('button');
+                newButton.innerHTML = 'Go to ' + selectedValue + ' Page';
+
+                // Add a click event listener to the button
+                newButton.addEventListener('click', function() {
+                    goToNextPage(selectedValue);
+                });
+
+                // Remove existing button and append the new button to the container
+                buttonContainer.innerHTML = '';
+                buttonContainer.appendChild(newButton);
+            } else {
+                // If the selected value is empty, remove the button
+                buttonContainer.innerHTML = '';
+            }
+        });
 
    </script>
 	<!-- For Js Library -->
