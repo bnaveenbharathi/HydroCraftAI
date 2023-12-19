@@ -3,11 +3,11 @@
 <head>
     <meta name="viewport" content="user-scalable=0, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Generate Desgin For Hyro Power Plant</title>
+    <title>Generative Design</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png"> -->
 
     <link rel="stylesheet" href="css/nmjhnzwwdnafgevb.css">
 
@@ -18,8 +18,8 @@
 <canvas id="renderCanvas" ></canvas>
 
 <!-- Vlajecky -->
-<div id="flagsContainer">
-</div>
+<!-- <div id="flagsContainer"> -->
+<!-- </div> -->
 
 <!-- GUI - horni panel, menu -->
 <div id="gui">
@@ -35,8 +35,8 @@
                 -->
             </ul>
         </div>
-        <div id="menuButton" onclick="GuiManager.instance.menuButtonClickHandler();">
-            <div id="menuButtonAnimation">
+        <!-- <div id="menuButton" onclick="GuiManager.instance.menuButtonClickHandler();"> -->
+            <!-- <div id="menuButtonAnimation"> -->
                 <span></span>
                 <span></span>
                 <span></span>
@@ -72,7 +72,7 @@
 <div id="boot">
     <div id="playButtonContainer" onclick="app.play()">
         <button type="button" id="playButton" title="Load 3D model"></button>
-        <p id="playText">Load 3D model</p>
+        <p id="playText">Load Generative Design</p>
     </div>
 </div>
 
@@ -132,15 +132,15 @@
 </div>
 
 <div id="sceneLogoContainer">
-    <a href="https://www.energyencyclopedia.com/" target="_blank">
-        <img class="img-fluid" src="images/ee_logo.png" alt="Energy Encyclopedia">
+    <!-- <a href="https://www.energyencyclopedia.com/" target="_blank"> -->
+        <img class="img-fluid" src="images/ee_logo.png" >
     </a>
 </div>
 
 <div id="moodleOwl" class="d-none">
     <div class="d-flex align-items-stretch justify-content-between">
-        <img id="moodleOwlImg" src="images/moodle_owl.svg" alt="Energy Encyclopedia Learning" class="img-fluid">
-        <a id="moodleLink" class="d-flex align-items-center p-1" href="" target="_blank">Click to test<br> your knowledge!</a>
+        <img id="moodleOwlImg" >
+        <a id="moodleLink" ></a>
     </div>
 </div>
 
@@ -148,10 +148,7 @@
 <div id="pause">
     <button type="button" id="resumeButton" onclick="app.resume()" title="Pokračovat v prohlížení modelu"></button>
 </div>
-<script>
-    document.title = "Generate Desgin For Hyro Power Plant";
-    window.top.document.title
-</script>
+
 <script src="vendor/bowser/bundled.js"></script>
 <script src="vendor/pep/pep.min.js"></script>
 <script src="vendor/babylon/babylon.js"></script>
