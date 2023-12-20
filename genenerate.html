@@ -355,9 +355,9 @@
 
                 <h3 class="h11 font-weight-bold">Elevation and Terrain:</h3>
                 <label for="Elevation" class="font-weight-bold">Elevation(meters/square feet) :</label>
-                <input type="text" id="Elevation " name="Elevation " class="inputlength" required>
-                
-                <label for="Terrain" class="font-weight-bold terrain" >Terrain :</label>
+				<input type="number" id="Elevation" name="Elevation" class="inputlength" required>
+				<br><button id="showPopupBtn" class="btn btn-primary">Powerplant suggestion</button>
+				<br><br><label for="Terrain" class="font-weight-bold terrain" >Terrain :</label>
                 <select id="Terrain" name="Terrain" class="selectionlength">
                     <option value="mountainous">mountainous</option>
                     <option value="flat">flat</option>
@@ -435,6 +435,8 @@
                     <option value="synchronous">Synchronous</option>
                     <option value="asynchronous">Asynchronous</option>
                 </select>
+				<button id="showImagesBtn" class="btn btn-primary">Show Images</button>
+
                 <br>
     
                 <!-- <h3 class="h11 font-weight-bold">Power Rating (kW):</h3>
@@ -739,8 +741,87 @@
             </div>
         </div>
     </div>
-		
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+		  <!-- Modal -->
+		  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="modalBody"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 <script>
+	
+	 document.getElementById('showPopupBtn').addEventListener('click', function() {
+            // Get the user's input value
+            var elevationValue = parseFloat(document.getElementById('Elevation').value);
+
+            // Determine the category based on the elevation value
+            var category = '';
+            if (elevationValue >= 0 && elevationValue <= 10) {
+                category = 'Small-Scale Hydro Power Plant';
+            } else if (elevationValue > 10 && elevationValue <= 100) {
+                category = 'Medium-Scale Hydro Power Plant';
+            } else if (elevationValue > 100 && elevationValue <= 1000) {
+                category = 'Large-Scale Hydro Power Plant';
+            }
+
+            // Set the modal title
+            document.getElementById('exampleModalLabel').innerText = category;
+
+            // Set the modal content based on the category
+            var modalContent = '';
+            switch (category) {
+                case 'Small-Scale Hydro Power Plant':
+                    modalContent = `
+                        <p><strong>Land Range:</strong> Few acres to tens of acres.</p>
+                        <p><strong>Type:</strong> Suitable for small rivers or streams, with lower capacity turbines.</p>
+                    `;
+                    break;
+                case 'Medium-Scale Hydro Power Plant':
+                    modalContent = `
+                        <p><strong>Land Range:</strong> Tens to hundreds of acres.</p>
+                        <p><strong>Type:</strong> Applicable to larger rivers or dams with moderate capacity turbines.</p>
+                    `;
+                    break;
+                case 'Large-Scale Hydro Power Plant':
+                    modalContent = `
+                        <p><strong>Land Range:</strong> Hundreds to thousands of acres.</p>
+                        <p><strong>Type:</strong> Suitable for extensive dam projects or major river installations with high-capacity turbines.</p>
+                    `;
+                    break;
+            }
+
+            // Set the modal body content
+            document.getElementById('modalBody').innerHTML = modalContent;
+
+            // Show the modal
+            $('#myModal').modal('show');
+        });
 	   // Add an event listener to the select element for penstock type
 	   document.getElementById('penstockType').addEventListener('change', function() {
             // Get the selected value
@@ -1007,6 +1088,54 @@ Commonly used in Pelton, Francis, or Kaplan turbine setups.</p>
                 $('#myModal').modal('show');
             }
         });
+		document.getElementById('showPopupBtn').addEventListener('click', function() {
+            // Get the user's input value
+            var elevationValue = parseFloat(document.getElementById('Elevation').value);
+
+            // Determine the category based on the elevation value
+            var category = '';
+            if (elevationValue >= 0 && elevationValue <= 10) {
+                category = 'Small-Scale Hydro Power Plant';
+            } else if (elevationValue > 10 && elevationValue <= 100) {
+                category = 'Medium-Scale Hydro Power Plant';
+            } else if (elevationValue > 100 && elevationValue <= 1000) {
+                category = 'Large-Scale Hydro Power Plant';
+            }
+
+            // Set the modal title
+            document.getElementById('exampleModalLabel').innerText = category;
+
+            // Set the modal content based on the category
+            var modalContent = '';
+            switch (category) {
+                case 'Small-Scale Hydro Power Plant':
+                    modalContent = `
+                        <p><strong>Land Range:</strong> Few acres to tens of acres.</p>
+                        <p><strong>Type:</strong> Suitable for small rivers or streams, with lower capacity turbines.</p>
+                    `;
+                    break;
+                case 'Medium-Scale Hydro Power Plant':
+                    modalContent = `
+                        <p><strong>Land Range:</strong> Tens to hundreds of acres.</p>
+                        <p><strong>Type:</strong> Applicable to larger rivers or dams with moderate capacity turbines.</p>
+                    `;
+                    break;
+                case 'Large-Scale Hydro Power Plant':
+                    modalContent = `
+                        <p><strong>Land Range:</strong> Hundreds to thousands of acres.</p>
+                        <p><strong>Type:</strong> Suitable for extensive dam projects or major river installations with high-capacity turbines.</p>
+                    `;
+                    break;
+            }
+
+            // Set the modal body content
+            document.getElementById('modalBody').innerHTML = modalContent;
+
+            // Show the modal
+            $('#myModal').modal('show');
+        });
+
+
     </script>
 
   
