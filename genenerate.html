@@ -435,7 +435,8 @@
                     <option value="synchronous">Synchronous</option>
                     <option value="asynchronous">Asynchronous</option>
                 </select>
-				<button id="showImagesBtn" class="btn btn-primary">Show Images</button>
+				<button id="showImagesBtn" class="btn btn-primary"><a href="http://127.0.0.1:5501/images/generators/generator1.jpg">Synchronous</a></button>
+				<button id="showImagesBtn" class="btn btn-primary"><a href="http://127.0.0.1:5501/images/generators/generator2.png">Asynchronous</a></button>
 
                 <br>
     
@@ -1134,7 +1135,29 @@ Commonly used in Pelton, Francis, or Kaplan turbine setups.</p>
             // Show the modal
             $('#myModal').modal('show');
         });
+		document.getElementById('goToNextPageBtn').addEventListener('click', function() {
+            // Get the selected value
+            var selectedValue = document.getElementById('generatorType').value;
 
+            // Define the page links for each generator type
+            var pageLinks = {
+                'synchronous': '/images/generators/generator1.jpg',
+                'asynchronous': '/images/generators/generator2.png',
+            };
+
+            // Get the corresponding page link
+            var pageLink = pageLinks[selectedValue];
+
+            // Check if the page link is defined
+            if (pageLink) {
+                // Open a new tab with the selected page
+                window.open(pageLink, '_blank');
+            } else {
+                // Provide a default behavior or show an error message
+                console.error('Page link not defined for the selected generator type.');
+            }
+        });
+		
 
     </script>
 
