@@ -51,9 +51,9 @@
             justify-content: center;
         } */
 		#buttonContainerNew button {
-            background-color: transparent;
-            color: #000; /* Set the text color to black or any color you prefer */
-            border: 1px solid #000; /* Add a border for visibility */
+            background-color:#007bff;
+            color: white; /* Set the text color to black or any color you prefer */
+            border: 2px solid #000; /* Add a border for visibility */
             padding: 5px 10px; /* Add padding for better appearance */
             cursor: pointer; /* Add cursor style on hover */
         }
@@ -341,9 +341,9 @@
 	============================================= -->
         <section>
 			
-            <!-- <div class="container">
+            <div class="container">
                 <center>
-				<button type="button" class="head1">Turbine Generative Design</button>
+				<!-- <button type="button" class="head1">Input for Civil structures</button>
                 <h3 class=" geoh1 font-weight-bold">Input Parameters</h3>
 				<p><b>Note:</b>Latitude & Longitude only on degree value</p>
 
@@ -351,7 +351,7 @@
                 <input type="number" id="latitude" name="latitude" class="inputlength" required>
                
                 <label for="longitude" class="font-weight-bold lat ">Longitude :</label>
-                <input type="number" id="longitude" name="longitude" class="inputlength" required>
+                <input type="number" id="longitude" name="longitude" class="inputlength" required> -->
 
                 <h3 class="h11 font-weight-bold">Elevation and Terrain:</h3>
                 <label for="Elevation" class="font-weight-bold">Elevation(meters/square feet) :</label>
@@ -366,16 +366,16 @@
                 <br>
 
                 <h3 class="h11 font-weight-bold">Water Source:</h3>
-                <label for="watersource" class="font-weight-bold">Source :</label>
-                <select id="watersource" name="watersource">
-                    <option value="dam">Dam</option>
-                    <option value="river">River</option>
-                    <option value="lake">Lake</option>
-                </select>
-                <!-- Additional location and topography fields here 
+				<label for="watersource" class="font-weight-bold">Source :</label>
+				<select id="watersource" name="watersource">
+					<option value="dam">Dam</option>
+					<option value="river">River</option>
+					<!-- <option value="lake">Lake</option> -->
+				</select>
+                <!-- Additional location and topography fields here -->
                 <br>
 			</center> 
-        </div> -->
+        </div>
         </section>
 	
 	<!-- Hydraulic System Section -->
@@ -383,34 +383,41 @@
 		<center>
         <section>
 			<div class="input">
-				<button type="button" class="head2">Turbine Generative Design</button>
+				<button type="button" class="head2">Hydromechanical Structures</button>
                 <h3 class="h11 font-weight-bold">Turbine Type:</h3>
 				<label for="turbinetype" class="font-weight-bold">Choose type :</label>
-                <select id="turbineType" name="turbineType">
-                    <option value="pelton">Pelton</option>
-                    <option value="francis">Francis</option>
-                    <option value="kaplan">Kaplan</option>
-                </select>
-				<div id="buttonContainerNew" class="turbinetypebtn"></div>       
-				      <h3 class="h11 font-weight-bold">Turbine Capacity</h3>
-               
-            
-                <!-- <p><b>Note : </b>operating conditions give only on percentage</p> -->
-                <label for="Normal Operating Conditions" class="font-weight-bold">Normal Operating Conditions :</label>
-                <input type="Normal Operating Conditions" id="Normal Operating Conditions" name="Normal Operating Conditions"class="inputlength" required>
-                <label for="Peak Operating Conditions" class="font-weight-bold peak2">Peak Operating Conditions :</label>
-                <input type="Peak Operating Conditions" id="Peak Operating Conditions" name="Peak Operating Conditions"class="inputlength" required>
-              
-              
+				<select id="turbineType" name="turbineType">
+					<option value="pelton">Select</option>
+					<option value="pelton">Pelton</option>
+					<option value="francis">Francis</option>
+					<option value="kaplan">Kaplan</option>
+				</select>
+			
+				<h3 class="h11 font-weight-bold">Turbine Capacity</h3>
+			
+				<label for="Normal Operating Conditions" class="font-weight-bold">Normal Operating Conditions :</label>
+				<input type="text" id="Normal Operating Conditions" name="Normal Operating Conditions" class="inputlength" required>
+			
+				<label for="Peak Operating Conditions" class="font-weight-bold peak2">Peak Operating Conditions :</label>
+				<input type="text" id="Peak Operating Conditions" name="Peak Operating Conditions" class="inputlength" required>
+			
+				<button id="proceedButton">Proceed</button>
+			
+				<div id="buttonContainer" class="turbinetypebtn"></div>
+
                 <h3 class="h11 font-weight-bold">Penstock Specifications:</h3>
-               <p><b>Note :</b>Diameter and Length give on meters</p>
-                <label for="Penstock Diameter " class="font-weight-bold">Penstock Diameter :</label>
-                <input type="text" id="Penstock Diameter " name="Penstock Diameter " class="inputlength" required>
-    
-                <label for="Penstock Length (meters)" class="font-weight-bold penlength ">Penstock Length :</label>
-                <input type="text" id="Penstock Length " name="Penstock Length" class="inputlength" required>
-    
-                <!-- Additional hydraulic system fields here -->
+               <!-- <p><b>Note :</b>Diameter and Length give on meters</p> -->
+			   <label for="penstockType" class="font-weight-bold">Material preferences</label>
+			   <select id="penstockType" name="penstockType">
+				   <option value=" ">Select</option>
+				   <option value="Steel Penstocks">Steel Penstocks</option>
+				   <option value="Concrete Penstocks">Concrete Penstocks</option>
+				   <!-- <option value="kaplan">Kaplan</option> -->
+			   </select>
+		   
+			   <!-- Container for the dynamic button -->
+			   <div id="penstockView"></div>
+			<!-- Additional hydraulic system fields here -->
     
                 
             </form>
@@ -424,27 +431,28 @@
                 <h3 class="h11 font-weight-bold">Generator Type:</h3>
 				<label for="" class="font-weight-bold">Select Type :</label>
                 <select id="generatorType" name="generatorType">
+                    <option value="synchronous">Select</option>
                     <option value="synchronous">Synchronous</option>
                     <option value="asynchronous">Asynchronous</option>
                 </select>
                 <br>
     
-                <h3 class="h11 font-weight-bold">Power Rating (kW):</h3>
+                <!-- <h3 class="h11 font-weight-bold">Power Rating (kW):</h3>
 				<label for="" class="font-weight-bold">Power rating in kilowatts :</label>
                 <input type="number" id="powerRating" name="powerRating" class="inputlength" required>
-                <br>
+                <br> -->
     
-                <h3 class="h11 font-weight-bold">Voltage Requirements (V):</h3>
+                <!-- <h3 class="h11 font-weight-bold">Voltage Requirements (V):</h3>
                 <label for="" class="font-weight-bold">voltage requirements in volts :</label>
 				<input type="number" id="voltageRequirements" name="voltageRequirements" class="inputlength" required>
-    
+     -->
                 <!-- Additional generator and electrical system fields here -->
     <br><br>
-                <button type="button" class="generator" >
+                <!-- <button type="button" class="generator" >
 					<!-- <a href="/Generative.html" target="_blank"> -->
-						GENERATE DESIGN
-					<!-- </a> -->
-					</button>
+						<!-- GENERATE DESIGN -->
+					<!-- </a>
+					</button> -->
                 <br>
             </form>
         </section>
@@ -680,18 +688,113 @@
 		</div>
 	</footer>
 <!-- End of Footer section
-	============================================= -->	
-   <script>
-	 var turbineTypeSelect = document.getElementById('turbineType');
-        var buttonContainer = document.getElementById('buttonContainerNew');
+	============================================= -->
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+		
+<script>
+	   // Add an event listener to the select element for penstock type
+	   document.getElementById('penstockType').addEventListener('change', function() {
+            // Get the selected value
+            var selectedValue = this.value;
+
+            // Check if the selected value is not "Select"
+            if (selectedValue !== ' ') {
+                // Set the modal title
+                document.getElementById('exampleModalLabel').innerText = 'Importance of ' + selectedValue;
+
+                // Set the modal content based on the selected penstock type
+                var modalContent = '';
+                switch (selectedValue) {
+                    case 'Steel Penstocks':
+                        modalContent = `
+						<h3>Use of Steel Penstock:</h3>
+<p>
+<b>Purpose:</b> Conveys water from source to turbines in a hydro power plant.
+<b>Location:</b> Connected to the turbines in the powerhouse.
+Suitable Water Sources: Used for conveying water from high-head rivers, dams, or reservoirs to turbines.
+                   </p>     `;
+                        break;
+                    case 'Concrete Penstocks':
+                        modalContent = `
+						<p><h3>Use and Importance of Concrete Penstock:</h3>
+
+<strong>Purpose:</strong> Channels water from source to turbines in a hydro power plant.
+<strong>Importance:</strong> Ensures durability, strength, and resistance to corrosion.
+<strong>Location:</strong> Connected to turbines in the powerhouse.
+Suitable Water Sources: Used for conveying water from high-head rivers, dams, or reservoirs to turbines.</p>
+                        `;
+                        break;
+                    default:
+                        // Handle the default case
+                        break;
+                }
+
+                // Set the modal body content
+                document.getElementById('modalBody').innerHTML = modalContent;
+
+                // Show the modal
+                $('#myModal').modal('show');
+            }
+        });
+        var penstockTypeSelect = document.getElementById('penstockType');
+        var penstockView = document.getElementById('penstockView');
 
         // Create a function to handle button click and open the link in a new tab with a delay
-        function goToNextPage(type) {
-            // Define the page links for each turbine type
+        function goToPenstockPage(type) {
+            // Define the page links for each penstock type
             var pageLinks = {
-                pelton: 'http://127.0.0.1:5501/Pelton/Pelton.html',
-                francis:'http://127.0.0.1:5501/Francis/Francis.html',
-                kaplan: 'http://127.0.0.1:5501/kaplan/kaplan.html'
+                'Steel Penstocks': 'http://127.0.0.1:5501/penstock/penstock%20steel/penstocksteel.html',
+                'Concrete Penstocks': 'http://127.0.0.1:5501/penstock/penstock%20concreate/penstock.html'
+                // Add more entries as needed
             };
 
             // Get the corresponding page link
@@ -705,36 +808,208 @@
                 }, 1000);
             } else {
                 // Provide a default behavior or show an error message
+                console.error('Page link not defined for the selected penstock type.');
+            }
+        }
+
+        // Add an event listener to the select element for penstock
+        penstockTypeSelect.addEventListener('change', function() {
+            // Get the selected value
+            var selectedValue = penstockTypeSelect.value;
+
+            // Check if the selected value is not empty and not equal to the default option
+            if (selectedValue !== '' && selectedValue !== ' ') {
+                // Create a new button
+                var newButton = document.createElement('button');
+                
+                // Set the button text based on the selected value
+                newButton.innerHTML = `Generate ${selectedValue} design`;
+
+                // Add a click event listener to the button
+                newButton.addEventListener('click', function() {
+                    goToPenstockPage(selectedValue);
+                });
+
+                // Remove existing penstockView content and append the new button to the penstockView
+                penstockView.innerHTML = '';
+                penstockView.appendChild(newButton);
+            } else {
+                // If the selected value is empty or equal to the default option, remove the penstockView content
+                penstockView.innerHTML = '';
+            }
+        });
+
+		var turbineTypeSelect = document.getElementById('turbineType');
+        var normalOperatingConditionsInput = document.getElementById('Normal Operating Conditions');
+        var peakOperatingConditionsInput = document.getElementById('Peak Operating Conditions');
+        var proceedButton = document.getElementById('proceedButton');
+        var buttonContainer = document.getElementById('buttonContainer');
+
+        function goToTurbinePage(type) {
+            var pageLinks = {
+                pelton: 'http://127.0.0.1:5501/Pelton/Pelton.html',
+                francis: 'http://127.0.0.1:5501/Francis/Francis.html',
+                kaplan: 'http://127.0.0.1:5501/kaplan/kaplan.html'
+            };
+
+            var pageLink = pageLinks[type];
+
+            if (pageLink) {
+                setTimeout(function () {
+                    window.open(pageLink, '_blank');
+                }, 1000);
+            } else {
                 console.error('Page link not defined for the selected turbine type.');
             }
         }
 
-        // Add an event listener to the select element
-        turbineTypeSelect.addEventListener('change', function() {
-            // Get the selected value
+        function showButtonContainer() {
             var selectedValue = turbineTypeSelect.value;
+            var normalOperatingConditions = normalOperatingConditionsInput.value;
+            var peakOperatingConditions = peakOperatingConditionsInput.value;
 
-            // Check if the selected value is not empty
-            if (selectedValue !== '') {
-                // Create a new button
+            if (selectedValue !== '' && selectedValue !== ' ' && normalOperatingConditions !== '' && peakOperatingConditions !== '') {
                 var newButton = document.createElement('button');
-                newButton.innerHTML = 'Go to ' + selectedValue + ' Page';
+                newButton.innerHTML = `Generate ${selectedValue} turbine design`;
 
-                // Add a click event listener to the button
-                newButton.addEventListener('click', function() {
-                    goToNextPage(selectedValue);
+                newButton.addEventListener('click', function () {
+                    goToTurbinePage(selectedValue);
                 });
 
-                // Remove existing button and append the new button to the container
                 buttonContainer.innerHTML = '';
                 buttonContainer.appendChild(newButton);
             } else {
-                // If the selected value is empty, remove the button
                 buttonContainer.innerHTML = '';
             }
-        });
+        }
 
-   </script>
+        proceedButton.addEventListener('click', showButtonContainer);
+
+		 // Add an event listener to the select element for turbine type
+		 document.getElementById('turbineType').addEventListener('change', function() {
+            // Get the selected value
+            var selectedValue = this.value;
+
+            // Check if the selected value is not "Select"
+            if (selectedValue !== 'select') {
+                // Set the modal title
+                document.getElementById('exampleModalLabel').innerText = 'Importance of ' + selectedValue + ' Turbines';
+
+                // Set the modal content based on the selected turbine type
+                var modalContent = '';
+                switch (selectedValue) {
+                    case 'pelton':
+                        modalContent = `
+                            <p>High-head applications with a significant vertical drop.</p>
+                            <p><strong>Location in Hydro Power Plants:</strong></p>
+                            <ul>
+                                <li>Located at the powerhouse.</li>
+                                <li>Water conveyed through a penstock to the turbine.</li>
+                            </ul>
+                            <p><strong>Suitable Water Sources:</strong></p>
+                            <ul>
+                                <li>Mountainous regions.</li>
+                                <li>High-head rivers.</li>
+                                <li>Hydroelectric dams.</li>
+                                <li>High-altitude reservoirs.</li>
+                            </ul>
+                        `;
+                        break;
+                    case 'kaplan':
+                        modalContent = `
+                            <p>Low-head, high-flow applications.</p>
+                            <p><strong>Location in Hydro Power Plants:</strong></p>
+                            <ul>
+                                <li>Typically located at the powerhouse.</li>
+                                <li>Can be placed in rivers or tidal power applications.</li>
+                            </ul>
+                            <p><strong>Suitable Water Sources:</strong></p>
+                            <ul>
+                                <li>Low-head rivers.</li>
+                                <li>Tidal power installations.</li>
+                                <li>Sites with varying flow conditions.</li>
+                            </ul>
+                        `;
+                        break;
+                    case 'francis':
+                        modalContent = `
+                            <p>Medium-head and medium-flow applications.</p>
+                            <p><strong>Location in Hydro Power Plants:</strong></p>
+                            <ul>
+                                <li>Usually located at the powerhouse.</li>
+                                <li>Positioned in rivers or outlets of reservoirs.</li>
+                            </ul>
+                            <p><strong>Suitable Water Sources:</strong></p>
+                            <ul>
+                                <li>Medium-head rivers.</li>
+                                <li>Dams and reservoirs with moderate elevation differences.</li>
+                                <li>Versatile for various flow conditions.</li>
+                            </ul>
+                        `;
+                        break;
+                    default:
+                        // Handle the default case
+                        break;
+                }
+
+                // Set the modal body content
+                document.getElementById('modalBody').innerHTML = modalContent;
+
+                // Show the modal
+                $('#myModal').modal('show');
+            }
+        });
+		document.getElementById('generatorType').addEventListener('change', function() {
+            // Get the selected value
+            var selectedValue = this.value;
+
+            // Check if the selected value is not "Select"
+            if (selectedValue !== ' ') {
+                // Set the modal title
+                document.getElementById('exampleModalLabel').innerText = 'Importance of ' + selectedValue + ' Generators:';
+
+                // Set the modal content based on the selected generator type
+                var modalContent = '';
+                switch (selectedValue) {
+                    case 'synchronous':
+                        modalContent = `
+						<p>Convert mechanical energy into electrical energy in hydro power plants.
+Location in Hydro Power Plants:
+
+Typically installed in the powerhouse.
+Suitable Water Sources:
+
+Applicable to various water sources, depending on the turbine type.
+Commonly used in Pelton, Francis, or Kaplan turbine setups</p>
+                        `;
+                        break;
+                    case 'asynchronous':
+                        modalContent = `
+					<p>Convert mechanical energy into electrical energy in hydro power plants.
+Location in Hydro Power Plants:
+
+Integrated with the turbine in the powerhouse.
+Suitable Water Sources:
+
+Applicable to various water sources, depending on the turbine type.
+Commonly used in Pelton, Francis, or Kaplan turbine setups.</p>
+                        `;
+                        break;
+                    default:
+                        // Handle the default case
+                        break;
+                }
+
+                // Set the modal body content
+                document.getElementById('modalBody').innerHTML = modalContent;
+
+                // Show the modal
+                $('#myModal').modal('show');
+            }
+        });
+    </script>
+
+  
 	<!-- For Js Library -->
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
