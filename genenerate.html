@@ -353,15 +353,19 @@
                 <label for="longitude" class="font-weight-bold lat ">Longitude :</label>
                 <input type="number" id="longitude" name="longitude" class="inputlength" required> -->
 
-                <h3 class="h11 font-weight-bold">Elevation and Terrain:</h3>
+                <h3 class="h11 font-weight-bold"> Terrain:</h3>
                 <!-- <label for="Elevation" class="font-weight-bold">Elevation(meters/square feet) :</label>
 				<input type="number" id="Elevation" name="Elevation" class="inputlength" required> -->
-				<br><br><label for="Terrain" class="font-weight-bold terrain" >Terrain :</label>
+				<!-- <br><button id="showPopupBtn" class="btn btn-primary">Powerplant suggestion</button> -->
+				<label for="Terrain" class="font-weight-bold terrain" >Terrain :</label>
                 <select id="Terrain" name="Terrain" class="selectionlength">
+                    <option >select</option>
                     <option value="mountainous">mountainous</option>
                     <option value="flat">flat</option>
                     <option value="valley">valley</option>
+					
                 </select>
+				<br><button id="showPopupBtn" class="btn btn-primary">Powerplant suggestion</button>
                 <br>
 
                 <h3 class="h11 font-weight-bold">Water Source:</h3>
@@ -372,9 +376,7 @@
 					<!-- <option value="lake">Lake</option> -->
 				</select><br>
 <a href="http://127.0.0.1:5501/Dam/Dam.html"><button>Generative Dam Model</button>
-</a>
-<br><button id="showPopupBtn" class="btn btn-primary">Powerplant suggestion</button>
-<!-- Additional location and topography fields here -->
+</a>                <!-- Additional location and topography fields here -->
                 <br>
 			</center> 
         </div>
@@ -694,7 +696,30 @@
 	</footer>
 <!-- End of Footer section
 	============================================= -->
-	  <!-- Modal -->
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	 <!-- Modal -->
+	 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Powerplant Suggestion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Content to be dynamically updated -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<!-- Modal -->
 	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -778,7 +803,37 @@
 			</div>
 		</div>
 <script>
-	
+	document.getElementById('showPopupBtn').addEventListener('click', showPopup);
+
+function showPopup() {
+	var selectedTerrain = document.getElementById('Terrain').value;
+	var modalBody = document.getElementById('modalBody');
+
+	if (selectedTerrain === 'mountainous') {
+		modalBody.innerHTML = 'Power plant suggestions for Mountain Terrain:<br>' +
+			'High-head dam: Most common, creates large reservoir, high power output, but big environmental impact.<br>' +
+			'Pumped storage: Stores energy for later use, requires large investment.<br>' +
+			'Micro hydro: Very small scale, low impact, lower power output.<br>' +
+			'In-stream: No dams, minimal impact, lower power output.';
+	} else if (selectedTerrain === 'flat') {
+		modalBody.innerHTML = 'Power plant suggestions for Flat:<br>' +
+			'Run-of-the-river: Small plants using existing river flow (less power, low impact).<br>' +
+			'Tidal: Capture the energy of rising and falling tides (predictable, specific locations).<br>' +
+			'Pumped storage: Store energy by pumping water between reservoirs (grid management, high investment).';
+	} else if (selectedTerrain === 'valley') {
+		modalBody.innerHTML = 'Power plant suggestions for Valley Terrain:<br>' +
+			'Hydropower dams: More power, storage, flood control, but higher environmental impact.<br>' +
+			'Pumped storage: Stores energy for later use, needs large investment.<br>' +
+			'Hydrokinetic power: New tech, lower efficiency, higher costs.<br>' +
+			'Tidal power: Predictable, ocean needed, high upfront costs.<br>' +
+			'Image of Tidal power plant';
+	}else if(selectTerrain=='select'){
+		
+	}
+
+	var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+	modal.show();
+}
 	 document.getElementById('showPopupBtn').addEventListener('click', function() {
             // Get the user's input value
             var elevationValue = parseFloat(document.getElementById('Elevation').value);
